@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-6">
+        <h2>Top 5 Story</h2>
+            </div>
+    <div class="col-sm-6">
+        <h2>Top 5 Reader</h2>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table table-striped table-hover ">
+                                          <thead>
+                                            <tr>
+                                              <th>Title</th>
+                                              <th>Author</th>
+                                              <th>Times Read</th>
+                                            </tr>
+                                          </thead>
+                                    {% for story in storylist %}
+                                          <tbody>
+                                            <tr>
+                                              <td>{{ story.title }}</td>
+                                              <td>{{ story.author }}</td>
+                                              <td>{{ story.reading__count}}</td>
+                                            </tr>
+                                        </tbody>
+                                    {% endfor %}
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <table class="table table-striped table-hover ">
+                                          <thead>
+                                            <tr>
+                                              <th>First Name</th>
+                                              <th>Last Name</th>
+                                              <th>Books Read</th>
+                                            </tr>
+                                          </thead>
+                                    {% for reader in readerlist %}
+                                          <tbody>
+                                            <tr>
+                                              <td>{{ reader.first_name }}</td>
+                                              <td>{{ reader.last_name }}</td>
+                                              <td>{{ reader.reading__count }}</td>
+                                            </tr>
+                                        </tbody>
+                                    {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

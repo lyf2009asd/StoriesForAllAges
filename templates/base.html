@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+{#    <link rel="icon" href="../../static/favicon.ico">#}
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <title>{% block head_title %}{% endblock %}StoriesForAllAges</title>
+
+    {% include 'head_css.html' %}
+    {% block head_extra %} {% endblock head_extra %}
+</head>
+<body>
+ {% include 'navbar.html' %}
+        {% if messages %}
+            <div class="message">
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+    <div class="container">
+    {% block extra_js %}
+    {% endblock extra_js %}
+    {% block content %}
+    {% endblock %}
+    </div>
+    <!-- /container -->
+
+    {% include 'js.html' %}
+</body>
+</html>

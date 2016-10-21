@@ -1,0 +1,53 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >StoryForAllAges</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <li ><a href="{% url 'story_list' %}">Story <span class="sr-only">(current)</span></a></li>
+        <li><a href="{% url 'reading_list' %}">Reading</a></li>
+          <li><a href="{% url 'top_read' %}">Top 5</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Actions <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'story_create' %}">Add Story</a></li>
+            <li class="divider"></li>
+            <li><a href="{% url 'reading_create' %}">Schedule Reading</a></li>
+            <li><a href="{% url 'reader_create' %}">Add Reader</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if request.user.is_authenticated %}
+                  <li><a>{{ request.user }}, Welcome!</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% endif  %}
+        {% if not request.user.is_authenticated and not "/login" in request.get_full_path %}
+                 <form class="navbar-form navbar-right" method="POST" action="{% url 'login' %}">{% csrf_token %}
+                 <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                    <input type="text" class="form-control input-sm" placeholder="Username" name="username"/>
+                </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            <input type="password" class="form-control input-sm" placeholder="Password" name="password">
+                        </div>
+                            <button type="submit" class="btn btn-succes">Login</button>
+                 </form>
+                {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

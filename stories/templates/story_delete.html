@@ -1,0 +1,32 @@
+{#{% extends 'base.html' %}#}
+{#{% block content %}#}
+{% load i18n widget_tweaks %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+
+    <div class="modal-dialog modal-lg" role="document">
+            <form method="post" action="{% url 'story_delete' object.id %}" id="story_delete" class="form"> {% csrf_token %}
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h1><strong>Delete Confirm</strong></h1><hr/>
+                    </div>
+
+                    <div class="modal-body">
+                    <p class="lead">Are you sure you want delete:<br/></p>
+                    <h4>{{ object.title }}</h4><hr/>
+                    </div>
+
+                    <div class="modal-footer">
+                    <a data-dismiss="modal" class="btn btn-primary">Cancel</a>
+                    <input type="submit" value="Confirm" class="btn btn-danger">
+                    </div>
+
+                 </div>
+            </form>
+    </div>
+<script>
+    var form_options = { target: '#modal', success: function(response) {} };
+    $('#story_delete').ajaxForm(form_options);
+</script>
+{#{% endblock %}#}

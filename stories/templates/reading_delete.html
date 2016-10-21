@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-6 align-left"">
+        <h1><strong>Delete Confirm</strong></h1><hr/>
+            <form method="post" action="."> {% csrf_token %}
+                <p class="lead">Are you sure you want delete:<br/></p>
+                <h4>{{ object.event }}</h4><hr/>
+                <input type="submit" value="Confirm" class="btn btn-danger">
+                <a href="{{ object.get_absolute_url }}" class="btn btn-primary">Cancel</a>
+            </form>
+    </div>
+</div>
+{% endblock %}
