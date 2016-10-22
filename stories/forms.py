@@ -39,11 +39,11 @@ class ReadingForm(forms.ModelForm):
             'story',
             'date'
         )
-        # widgets = {
-        #     'reader': Select2Widget,
-        #     'story': Select2Widget,
-        #     # 'date': DateWidget(attrs={'id': "id_date"}, usel10n=True, bootstrap_version=3)
-        # }
+        widgets = {
+            'reader': Select2Widget,
+            'story': Select2Widget,
+            # 'date': DateWidget(attrs={'id': "id_date"}, usel10n=True, bootstrap_version=3)
+        }
 
 
 class ReaderForm(forms.ModelForm):

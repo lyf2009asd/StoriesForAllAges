@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
+from django.views.generic import DeleteView
 # Create your views here.
 
 
@@ -99,11 +100,12 @@ def story_delete(request, id):
     if request.method == "POST":
         instance.delete()
         messages.success(request, "Successfully Deleted")
-        return render(request, "story_home.html")
+        return redirect("story_list")
     context = {
         "object": instance,
     }
     return render(request, "story_delete.html", context)
+
 
 
 def reading_list(request):
